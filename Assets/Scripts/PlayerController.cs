@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,38 +24,53 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI powerText;
 
+    [SerializeField] private Image fixedJoystickImage;  
+    [SerializeField] private Image[] fixedJoystickHandleImage;
+
 
     private float forcePower = 1f;
 
     private void Awake()
     {
         fixedJoystick = GameObject.FindGameObjectWithTag("FixedJoystick").GetComponent<FixedJoystick>();
+        fixedJoystickImage = fixedJoystick.gameObject.GetComponent<Image>();
+        fixedJoystickHandleImage = fixedJoystick.gameObject.GetComponentsInChildren<Image>();
     }
 
     private void FixedUpdate()
     {
 
 
-        if (fixedJoystick.IsUsedJoystick)
+        if (fixedJoystick.IsUsedJoystick && (fixedJoystick.IsEnableToUse == true))
         {
             SetPlayerMovement();
-
         }
         else
         {
             lineRenderer.enabled = false;
             rb.AddForce(-vectorSpeed * forceMultiplier * clampPower);
+
             clampPower = 1f;
             forcePower = 1f;
+
             vectorSpeed = Vector3.zero;
             powerText.text = "Power: " + clampPower;
             lineRenderer.SetPosition(0, Vector3.zero);
             lineRenderer.SetPosition(1, Vector3.zero);
 
+            fixedJoystick.IsEnableToUse = false;
+            SetFixedJoystickAlphaColor(60);
+
+
         }
     }
 
+    private void OnCollisionStay()
+    {
+        fixedJoystick.IsEnableToUse = true;
+        SetFixedJoystickAlphaColor(255);
 
+    }
     private void SetPlayerMovement()
     {
        
@@ -75,16 +91,15 @@ public class PlayerController : MonoBehaviour
             powerText.text = "Power: " + string.Format("{0:f2}", clampPower);
            
         }
+ 
 
 
-        
     }
 
-    private void Update()
+    private void SetFixedJoystickAlphaColor(byte alphaValue)
     {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            gameObject.GetComponent<Transform>().position = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, -1.06f);
-        }
+        fixedJoystickImage.color = new Color32(255, 255, 255, alphaValue);
+        fixedJoystickHandleImage[1].color = new Color32(255, 255, 255, alphaValue);
     }
+
 }

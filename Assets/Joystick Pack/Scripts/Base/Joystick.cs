@@ -27,12 +27,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public bool IsUsedJoystick { get { return isUsedJoystick; } }
 
+    public bool IsEnableToUse { get { return isEnableToUse; } set { isEnableToUse = value; } }
+
     [SerializeField] private float handleRange = 1;
     [SerializeField] private float deadZone = 0;
     [SerializeField] private AxisOptions axisOptions = AxisOptions.Both;
     [SerializeField] private bool snapX = false;
     [SerializeField] private bool snapY = false;
     [SerializeField] private bool isUsedJoystick = false;
+    [SerializeField] private bool isEnableToUse = true;
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;

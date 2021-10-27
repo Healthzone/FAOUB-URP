@@ -347,7 +347,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6589991207505060030}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 757cee2f491d2044291bf358059765bf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 6589991207865908888}
   - component: {fileID: 6589991207865908890}
   - component: {fileID: 6589991207865908891}
+  - component: {fileID: 1130379340587702725}
   m_Layer: 0
   m_Name: StylShip_WheelStand
   m_TagString: Untagged
@@ -612,6 +613,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1130379340587702725
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589991207865908889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8971191428082997840, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
 --- !u!1 &6589991207891038757
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +812,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6589991207918581354}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 757cee2f491d2044291bf358059765bf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1326,7 +1341,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6589991208373506384}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 757cee2f491d2044291bf358059765bf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1616,6 +1631,7 @@ GameObject:
   - component: {fileID: 6589991208525509462}
   - component: {fileID: 6589991208525509464}
   - component: {fileID: 6589991208525509465}
+  - component: {fileID: 5064887715435846240}
   m_Layer: 0
   m_Name: StylShip_MastMid
   m_TagString: Untagged
@@ -1686,6 +1702,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5064887715435846240
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589991208525509463}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -401888291066383863, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
 --- !u!1 &6589991208590584028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,7 +3452,7 @@ MeshCollider:
   m_GameObject: {fileID: 6589991209463935949}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
