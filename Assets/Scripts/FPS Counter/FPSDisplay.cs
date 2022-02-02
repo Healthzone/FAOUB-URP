@@ -13,6 +13,8 @@ public class FPSDisplay : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _lowesLabel;
 
+    [SerializeField]
+    private FPSColor[] _fpsColors;
 
     private FPSCounter _fPSCounter;
 
@@ -38,9 +40,32 @@ public class FPSDisplay : MonoBehaviour
 
     private void Update()
     {
-        _averageLabel.text = "AvgFPS: " + _stringFrom00To99[Mathf.Clamp(_fPSCounter.AverageFPS, 0, 99)];
-        _highestLabel.text = "MaxFPS: " + _stringFrom00To99[Mathf.Clamp(_fPSCounter.HighestFPS, 0, 99)];
-        _lowesLabel.text = "LowFPS: " + _stringFrom00To99[Mathf.Clamp(_fPSCounter.LowestFPS, 0, 99)];
+        Display(_averageLabel, _fPSCounter.AverageFPS);
+        Display(_highestLabel, _fPSCounter.HighestFPS);
+        Display(_lowesLabel, _fPSCounter.LowestFPS);
+
     }
+
+
+    private void Display(TextMeshProUGUI label, int fps)
+    {
+        label.text = _stringFrom00To99[Mathf.Clamp(fps, 0, 99)];
+        for (int i = 0; i < _fpsColors.Length; i++)
+        {
+            if (fps >= _fpsColors[i].MinFps)
+            {
+                label.color = _fpsColors[i].Color;
+                break;
+            }
+        }
+    }
+
+    [System.Serializable]
+    private struct FPSColor
+    {
+        public Color Color;
+        public int MinFps;
+    }
+
 
 }
