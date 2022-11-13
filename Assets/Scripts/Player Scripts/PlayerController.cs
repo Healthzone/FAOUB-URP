@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image[] fixedJoystickHandleImage;
 
 
+
     private float forcePower = 1f;
 
     private void Awake()
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
         fixedJoystickImage = fixedJoystick.gameObject.GetComponent<Image>();
         fixedJoystickHandleImage = fixedJoystick.gameObject.GetComponentsInChildren<Image>();
     }
+
 
     private void FixedUpdate()
     {
@@ -73,13 +75,14 @@ public class PlayerController : MonoBehaviour
     }
     private void SetPlayerMovement()
     {
-       
+
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, ballTransform.position);
 
         Vector3 lineSift = new Vector3(fixedJoystick.Direction.x * lineRenderDistance, fixedJoystick.Direction.y * lineRenderDistance, 0) + ballTransform.position;
         lineRenderer.SetPosition(1, lineSift);
         vectorSpeed = new Vector3(lineSift.x - ballTransform.localPosition.x, lineSift.y - ballTransform.localPosition.y, 0);
+
 
         if ((Mathf.Abs(fixedJoystick.Direction.x) + Mathf.Abs(fixedJoystick.Direction.y)) >= 1.0f)
         {

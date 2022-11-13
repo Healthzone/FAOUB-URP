@@ -6,27 +6,27 @@ public class CheckpointSystem : MonoBehaviour
 {
     private Vector3 savedPosition;
 
-    private Vector3 currentPosition;
-
     private GameObject playerGameObject;
 
     private void Awake()
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
     }
+    private void Start()
+    {
+        SetCheckpointPosition();
+    }
 
     public void SetCheckpointPosition ()
     {
-        currentPosition = playerGameObject.transform.position; 
-        savedPosition = currentPosition;
-
-        
+        savedPosition = playerGameObject.transform.position; 
     }
 
     public void UseCheckpoint()
     {
         if (savedPosition != null)
         {
+            playerGameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
             playerGameObject.transform.position = savedPosition;
         } else
         {
