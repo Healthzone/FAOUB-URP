@@ -17,15 +17,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform lineTransform;
     [SerializeField] private Transform ballTransform;
 
-    [SerializeField] private FixedJoystick fixedJoystick;
+    [SerializeField] private FloatingJoystick joystick;
 
     [SerializeField] private float forcePowerBorder = 5f;
     [SerializeField] private float forcePowerDelta = 0.02f;
 
     [SerializeField] private TextMeshProUGUI powerText;
 
-    [SerializeField] private Image fixedJoystickImage;  
-    [SerializeField] private Image[] fixedJoystickHandleImage;
+    [SerializeField] private Image joystickImage;
+    [SerializeField] private Image[] joystickImageHandler;
 
 
 
@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        fixedJoystick = GameObject.FindGameObjectWithTag("FixedJoystick").GetComponent<FixedJoystick>();
-        fixedJoystickImage = fixedJoystick.gameObject.GetComponent<Image>();
-        fixedJoystickHandleImage = fixedJoystick.gameObject.GetComponentsInChildren<Image>();
+        joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FloatingJoystick>();
+        //joystickImage = joystick.gameObject.GetComponent<Image>();
+        //joystickImageHandler = joystick.gameObject.GetComponentsInChildren<Image>();
     }
 
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        if (fixedJoystick.IsUsedJoystick && (fixedJoystick.IsEnableToUse == true))
+        if (joystick.IsUsedJoystick && (joystick.IsEnableToUse == true))
         {
             SetPlayerMovement();
         }
@@ -60,8 +60,8 @@ public class PlayerController : MonoBehaviour
             lineRenderer.SetPosition(0, Vector3.zero);
             lineRenderer.SetPosition(1, Vector3.zero);
 
-            fixedJoystick.IsEnableToUse = false;
-            SetFixedJoystickAlphaColor(60);
+            joystick.IsEnableToUse = false;
+            //SetFixedJoystickAlphaColor(60);
 
 
         }
@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay()
     {
-        fixedJoystick.IsEnableToUse = true;
-        SetFixedJoystickAlphaColor(255);
+        joystick.IsEnableToUse = true;
+        //SetFixedJoystickAlphaColor(255);
 
     }
     private void SetPlayerMovement()
@@ -79,30 +79,30 @@ public class PlayerController : MonoBehaviour
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, ballTransform.position);
 
-        Vector3 lineSift = new Vector3(fixedJoystick.Direction.x * lineRenderDistance, fixedJoystick.Direction.y * lineRenderDistance, 0) + ballTransform.position;
+        Vector3 lineSift = new Vector3(joystick.Direction.x * lineRenderDistance, joystick.Direction.y * lineRenderDistance, 0) + ballTransform.position;
         lineRenderer.SetPosition(1, lineSift);
         vectorSpeed = new Vector3(lineSift.x - ballTransform.localPosition.x, lineSift.y - ballTransform.localPosition.y, 0);
 
 
-        if ((Mathf.Abs(fixedJoystick.Direction.x) + Mathf.Abs(fixedJoystick.Direction.y)) >= 1.0f)
+        if ((Mathf.Abs(joystick.Direction.x) + Mathf.Abs(joystick.Direction.y)) >= 1.0f)
         {
-            
+
             forcePower += forcePowerDelta * Time.deltaTime;
 
-            clampPower =  Mathf.Clamp(forcePower, 1f, forcePowerBorder);
+            clampPower = Mathf.Clamp(forcePower, 1f, forcePowerBorder);
 
             powerText.text = "Power: " + string.Format("{0:f2}", clampPower);
-           
+
         }
- 
+
 
 
     }
 
     private void SetFixedJoystickAlphaColor(byte alphaValue)
     {
-        fixedJoystickImage.color = new Color32(255, 255, 255, alphaValue);
-        fixedJoystickHandleImage[1].color = new Color32(255, 255, 255, alphaValue);
+        joystickImage.color = new Color32(255, 255, 255, alphaValue);
+        joystickImageHandler[1].color = new Color32(255, 255, 255, alphaValue);
     }
 
 }

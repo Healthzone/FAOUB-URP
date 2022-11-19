@@ -23,6 +23,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _pauseBtn;
     [SerializeField] private GameObject _resumeBtn;
 
+    [Header("Canvases")]
+    [SerializeField] private GameObject _controlCanvas;
+    [SerializeField] private GameObject _uiCanvas;
+
     private bool _isSettingsOpened = false;
 
 
@@ -34,9 +38,12 @@ public class UIManager : MonoBehaviour
 
     private void ShowFinishedLeveDialoge()
     {
+        _controlCanvas.SetActive(false);
+        _uiCanvas.SetActive(false);
         _finishedModalDialoge.SetActive(true);
         _finishedModalDialoge.transform.localScale = Vector3.zero;
         _finishedModalDialoge.transform.DOScale(1, 3f);
+
     }
 
     private void ShowCheckpointReached()
@@ -63,6 +70,7 @@ public class UIManager : MonoBehaviour
     }
     public void ToMainMenu()
     {
+        DOTween.KillAll();
         SceneManager.LoadScene("Menu");
     }
 
@@ -80,8 +88,7 @@ public class UIManager : MonoBehaviour
             _gameBtns.transform.localScale = Vector3.zero;
             _gameBtns.SetActive(true);
             DOTween.Sequence()
-                .SetEase(Ease.OutExpo)
-                .Append(_gameBtns.transform.DOScale(1.1f, _buttonsScaleSpeed))
+                .SetEase(Ease.Linear)
                 .Append(_gameBtns.transform.DOScale(1, _buttonsScaleSpeed));
 
         } else if(_isSettingsOpened )
@@ -90,8 +97,8 @@ public class UIManager : MonoBehaviour
             _gameBtns.transform.localScale = Vector3.one;
             DOTween.Sequence()
             .SetEase(Ease.OutExpo)
-            .Append(_gameBtns.transform.DOScale(1.1f, _buttonsScaleSpeed - 0.7f))
-            .Append(_gameBtns.transform.DOScale(0, _buttonsScaleSpeed - 0.7f));
+            //.Append(_gameBtns.transform.DOScale(1.1f, _buttonsScaleSpeed - 0.7f))
+            .Append(_gameBtns.transform.DOScale(0f, _buttonsScaleSpeed));
         }
     }
 

@@ -6,6 +6,7 @@ public class TranslatePlayerTrigger : MonoBehaviour
 {
 
     [SerializeField] float _pointToTransform;
+    [SerializeField] BoxCollider _boxCollider;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +16,7 @@ public class TranslatePlayerTrigger : MonoBehaviour
             Transform playerTransform = other.GetComponent<Transform>();
 
             playerTransform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, _pointToTransform);
+            _boxCollider.enabled = !_boxCollider.enabled;
         }
 
     }

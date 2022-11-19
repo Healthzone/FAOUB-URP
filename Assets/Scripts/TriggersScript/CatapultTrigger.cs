@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatapultTrigger : MonoBehaviour
 {
-    private Animation animation;
+    private new Animation animation;
     private void Start()
     {
         animation = gameObject.GetComponent<Animation>();
