@@ -2,6 +2,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,16 +22,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float forcePowerBorder = 5f;
     [SerializeField] private float forcePowerDelta = 0.02f;
 
-    [SerializeField] private TextMeshProUGUI powerText;
-
     [SerializeField] private Image joystickImage;
     [SerializeField] private Image[] joystickImageHandler;
 
     [SerializeField] private TrajectoryRenderer trajectoryRenderer;
     [SerializeField] private LineRenderer trajectoryLine;
+    [SerializeField] private PowerBar powerBar;
 
 
     private Vector3 _gravity;
+    private bool isStarted = false;
 
 
 
@@ -38,9 +39,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        GlobalEventManager.OnPlayerClosedTutorial.AddListener(TutorialClosed);
+    }
+
+    private void TutorialClosed()
+    {
         joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<FloatingJoystick>();
-        //joystickImage = joystick.gameObject.GetComponent<Image>();
-        //joystickImageHandler = joystick.gameObject.GetComponentsInChildren<Image>();
+        isStarted = true;
     }
 
     private void Start()
@@ -51,39 +56,40 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-
-        if (joystick.IsUsedJoystick && (joystick.IsEnableToUse == true))
+        if (isStarted)
         {
-            SetPlayerMovement();
-        }
-        else
-        {
-            Vector3 speed = -vectorSpeed * forceMultiplier * clampPower;
-            lineRenderer.enabled = false;
-            trajectoryLine.enabled = false;
-            rb.AddForce(speed, ForceMode.VelocityChange);
+            if (joystick.IsUsedJoystick && (joystick.IsEnableToUse == true))
+            {
+                SetPlayerMovement();
+            }
+            else
+            {
+                Vector3 speed = -vectorSpeed * forceMultiplier * clampPower;
+                lineRenderer.enabled = false;
+                trajectoryLine.enabled = false;
+                powerBar.fill = 0.05f;
+                rb.AddForce(speed, ForceMode.VelocityChange);
 
 
-            clampPower = 1f;
-            forcePower = 1f;
+                clampPower = 1f;
+                forcePower = 1f;
 
-            vectorSpeed = Vector3.zero;
-            powerText.text = "Power: " + clampPower;
-            lineRenderer.SetPosition(0, Vector3.zero);
-            lineRenderer.SetPosition(1, Vector3.zero);
+                vectorSpeed = Vector3.zero;
+                lineRenderer.SetPosition(0, Vector3.zero);
+                lineRenderer.SetPosition(1, Vector3.zero);
 
-            joystick.IsEnableToUse = false;
-            //SetFixedJoystickAlphaColor(60);
-
-
+                joystick.IsEnableToUse = false;
+                //SetFixedJoystickAlphaColor(60);
+            }
         }
     }
 
     private void OnCollisionStay()
     {
-        joystick.IsEnableToUse = true;
-        //SetFixedJoystickAlphaColor(255);
-
+        if (isStarted)
+        {
+            joystick.IsEnableToUse = true;
+        }
     }
     private void SetPlayerMovement()
     {
@@ -103,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
             clampPower = Mathf.Clamp(forcePower, 1f, forcePowerBorder);
 
-            powerText.text = "Power: " + string.Format("{0:f2}", clampPower);
+            powerBar.fill = clampPower / 4f;
 
         }
         trajectoryLine.enabled = true;

@@ -8,6 +8,7 @@ public class GlobalEventManager : MonoBehaviour
 {
     public static UnityEvent OnCheckpointReached = new UnityEvent();
     public static UnityEvent OnPlayerFinishedLevel = new UnityEvent();
+    public static UnityEvent OnPlayerClosedTutorial = new UnityEvent();
 
 
 
@@ -21,5 +22,10 @@ public class GlobalEventManager : MonoBehaviour
     {
         Debug.Log("Player finished level!");
         OnPlayerFinishedLevel.Invoke();
+    }
+
+    public static void SendPlayerClosesTutorial()
+    {
+        OnPlayerClosedTutorial.Invoke();
     }
 }
