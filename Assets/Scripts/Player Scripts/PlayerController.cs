@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 vectorSpeed;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private Transform lineTransform;
     [SerializeField] private Transform ballTransform;
 
     [SerializeField] private FloatingJoystick joystick;
@@ -27,6 +26,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image joystickImage;
     [SerializeField] private Image[] joystickImageHandler;
 
+    [SerializeField] private TrajectoryRenderer trajectoryRenderer;
+    [SerializeField] private LineRenderer trajectoryLine;
+
+
+    private Vector3 _gravity;
+
 
 
     private float forcePower = 1f;
@@ -38,6 +43,10 @@ public class PlayerController : MonoBehaviour
         //joystickImageHandler = joystick.gameObject.GetComponentsInChildren<Image>();
     }
 
+    private void Start()
+    {
+        _gravity = GetComponent<CustomGravity>().gravity;
+    }
 
     private void FixedUpdate()
     {
@@ -49,8 +58,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            Vector3 speed = -vectorSpeed * forceMultiplier * clampPower;
             lineRenderer.enabled = false;
-            rb.AddForce(-vectorSpeed * forceMultiplier * clampPower);
+            trajectoryLine.enabled = false;
+            rb.AddForce(speed, ForceMode.VelocityChange);
+
 
             clampPower = 1f;
             forcePower = 1f;
@@ -94,7 +106,8 @@ public class PlayerController : MonoBehaviour
             powerText.text = "Power: " + string.Format("{0:f2}", clampPower);
 
         }
-
+        trajectoryLine.enabled = true;
+        trajectoryRenderer.ShowTrajectory(transform.position, -vectorSpeed * clampPower * forceMultiplier, _gravity);
 
 
     }
