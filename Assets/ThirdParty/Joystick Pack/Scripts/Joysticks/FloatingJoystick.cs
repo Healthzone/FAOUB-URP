@@ -20,6 +20,7 @@ public class FloatingJoystick : Joystick
 
     public override void OnPointerUp(PointerEventData eventData)
     {
+        GlobalEventManager.SendPlayerSwingBall();
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
     }

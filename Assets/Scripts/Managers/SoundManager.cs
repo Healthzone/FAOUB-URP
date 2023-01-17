@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,24 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioMixer _maserMixer;
+    [SerializeField] private AudioSource _hitClip;
+    [SerializeField] private AudioSource _swingClip;
 
+    private void Start()
+    {
+        GlobalEventManager.OnPlayerHitCollider.AddListener(PlayHitSound);
+        GlobalEventManager.OnPlayerSwingBall.AddListener(PlaySwingSound);
+    }
+
+    private void PlaySwingSound()
+    {
+        _swingClip.Play();
+    }
+
+    private void PlayHitSound()
+    {
+        _hitClip.Play();
+    }
 
     public void SetMusicOn()
     {
@@ -24,4 +42,6 @@ public class SoundManager : MonoBehaviour
     {
         _maserMixer.SetFloat("soundVolume", -80f);
     }
+
+
 }

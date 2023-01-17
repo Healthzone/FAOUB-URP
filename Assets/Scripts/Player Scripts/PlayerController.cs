@@ -53,22 +53,32 @@ public class PlayerController : MonoBehaviour
         _gravity = GetComponent<CustomGravity>().gravity;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        GlobalEventManager.SendPlayerHitCollider();
+    }
+
+
+
     private void FixedUpdate()
     {
 
         if (isStarted)
         {
-            if (joystick.IsUsedJoystick && (joystick.IsEnableToUse == true))
+            if (joystick.IsUsedJoystick && joystick.IsEnableToUse == true)
             {
                 SetPlayerMovement();
             }
             else
             {
+                Debug.Log("Swing");
                 Vector3 speed = -vectorSpeed * forceMultiplier * clampPower;
                 lineRenderer.enabled = false;
                 trajectoryLine.enabled = false;
                 powerBar.fill = 0.05f;
                 rb.AddForce(speed, ForceMode.VelocityChange);
+
+
 
 
                 clampPower = 1f;

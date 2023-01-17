@@ -9,6 +9,8 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent OnCheckpointReached = new UnityEvent();
     public static UnityEvent OnPlayerFinishedLevel = new UnityEvent();
     public static UnityEvent OnPlayerClosedTutorial = new UnityEvent();
+    public static UnityEvent OnPlayerHitCollider = new UnityEvent();
+    public static UnityEvent OnPlayerSwingBall= new UnityEvent();
 
 
 
@@ -27,5 +29,14 @@ public class GlobalEventManager : MonoBehaviour
     public static void SendPlayerClosesTutorial()
     {
         OnPlayerClosedTutorial.Invoke();
+    }
+
+    public static void SendPlayerHitCollider()
+    {
+        OnPlayerHitCollider.Invoke();
+    }
+    public static void SendPlayerSwingBall()
+    {
+        OnPlayerSwingBall.Invoke();
     }
 }
