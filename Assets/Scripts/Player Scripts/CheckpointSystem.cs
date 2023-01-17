@@ -8,6 +8,8 @@ public class CheckpointSystem : MonoBehaviour
 
     private GameObject playerGameObject;
 
+    [SerializeField] private Ads ads;
+
     private void Awake()
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
@@ -28,6 +30,8 @@ public class CheckpointSystem : MonoBehaviour
         {
             playerGameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
             playerGameObject.transform.position = savedPosition;
+
+            ads.CurrentUsedCheckpointNumber++;
         } else
         {
             Debug.Log("Cant use checkpoint");

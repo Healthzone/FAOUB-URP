@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private AudioMixer _maserMixer;
+    [SerializeField] private AudioMixer _masterMixer;
     [SerializeField] private AudioSource _hitClip;
     [SerializeField] private AudioSource _swingClip;
 
@@ -28,19 +28,19 @@ public class SoundManager : MonoBehaviour
 
     public void SetMusicOn()
     {
-        _maserMixer.SetFloat("musicVolume", 0f);
+        _masterMixer.SetFloat("musicVolume", 0f);
     }
     public void SetMusicOff()
     {
-        _maserMixer.SetFloat("musicVolume", -80f);
+        _masterMixer.SetFloat("musicVolume", -80f);
     }
     public void SetSoundOn()
     {
-        _maserMixer.SetFloat("soundVolume", 0f);
+        _masterMixer.SetFloat("soundVolume", 0f);
     }
     public void SetSoundOff()
     {
-        _maserMixer.SetFloat("soundVolume", -80f);
+        _masterMixer.SetFloat("soundVolume", -80f);
     }
 
 

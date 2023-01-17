@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Swing");
                 Vector3 speed = -vectorSpeed * forceMultiplier * clampPower;
                 lineRenderer.enabled = false;
                 trajectoryLine.enabled = false;
