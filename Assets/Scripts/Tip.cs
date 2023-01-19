@@ -37,12 +37,16 @@ public class Tip : MonoBehaviour
             .Append(_setCheckpointImage.DOFade(0, 0.5f))
             .Append(_setCheckpointImage.DOFade(1, 0.5f))
             .Append(_setCheckpointImage.DOFade(0, 0.5f))
+            .Append(_setCheckpointImage.DOFade(1, 0.5f))
+            .Append(_setCheckpointImage.DOFade(0, 0.5f))
+            .Append(_setCheckpointImage.DOFade(1, 0.5f))
+            .Append(_setCheckpointImage.DOFade(0, 0.5f))
             .Append(_setCheckpointImage.DOFade(1, 0.5f));
 
 
         DOTween.Sequence()
             .Append(rectTransform.DOAnchorPos(Vector2.zero, 1f))
-            .AppendInterval(5f)
+            .AppendInterval(7f)
             .Append(rectTransform.DOAnchorPos(new Vector2(0, 500), 1f));
     }
 }

@@ -110,9 +110,10 @@ namespace YG
                     }
                     else
                     {
+                        RectTransform rectTransform = sampleContainer.GetComponent<RectTransform>();
                         for (int i = 0; i < rank.Length; i++)
                         {
-                            if (i != 0) sampleContainer = Instantiate(sampleContainer, sampleContainer.transform.parent);
+                            if (i != 0) sampleContainer = Instantiate(sampleContainer, rectTransform.parent);
 
                             sampleContainer.transform.Find("Rank").GetComponentInChildren<Text>().text = rank[i].ToString();
                             sampleContainer.transform.Find("Name").GetComponentInChildren<Text>().text = playersName[i];

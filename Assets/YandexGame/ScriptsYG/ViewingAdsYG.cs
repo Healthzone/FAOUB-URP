@@ -11,7 +11,7 @@ namespace YG
         //public class AudioPause
         //{
         //    public bool audioPauseActive;
-            
+
         //    public enum PauseMethod { RememberPreviousState, CustomState };
         //    [Tooltip("RememberPreviousState - Ставить звук на паузу при открытии рекламы. После закрытия рекламы звук перейдёт в изначальное значение (до открытия рекламы).\n CustomState - Укажите свои значения, которые будут выставляться при открытии и закрытии рекламы")]
         //    public PauseMethod pauseMethod;
@@ -85,6 +85,8 @@ namespace YG
         public CursorVisible cursorVisible;
         [ConditionallyVisible(nameof(pauseMethod))]
         public CursorLockMode cursorLockMode;
+
+        [SerializeField] private Stopwatch _timer;
 
 
         //[Space(7)]
@@ -178,8 +180,13 @@ namespace YG
                     {
                         timeScaleOnAd = Time.timeScale;
                         Time.timeScale = 0;
+                        _timer.IsActive = false;
                     }
-                    else Time.timeScale = timeScaleOnAd;
+                    else
+                    {
+                        Time.timeScale = timeScaleOnAd;
+                        _timer.IsActive = true;
+                    }
                 }
             }
 

@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _checkpointText;
     [SerializeField] private TMP_Text _bestTimeLabel;
+    [SerializeField] private TMP_Text _currentTimeLabel;
     [SerializeField] private GameObject _finishedModalDialoge;
     [SerializeField] private GameObject _gameBtns;
 
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
         _uiCanvas.SetActive(false);
         _finishedModalDialoge.SetActive(true);
         _finishedModalDialoge.transform.localScale = Vector3.zero;
-        _finishedModalDialoge.transform.DOScale(1, 3f);
+        _finishedModalDialoge.transform.DOScale(1, 1.5f);
 
     }
 
@@ -77,7 +78,13 @@ public class UIManager : MonoBehaviour
     public void ShowBestTimeLabel(double time)
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-        _bestTimeLabel.text = $"Ваш рекорд: {timeSpan.ToString(@"mm\:ss\:fff")}";
+        _bestTimeLabel.text += $" {timeSpan.ToString(@"mm\:ss\:fff")}";
+    }
+
+    public void ShowCurrentTimeLabel(double currentTime)
+    {
+        TimeSpan timeSpan = TimeSpan.FromSeconds(currentTime);
+        _currentTimeLabel.text += $" {timeSpan.ToString(@"mm\:ss\:fff")}";
     }
 
     public void SettingsInteractBtn()
@@ -132,4 +139,6 @@ public class UIManager : MonoBehaviour
         _pauseBtn.SetActive(false);
         _resumeBtn.SetActive(true);
     }
+
+
 }

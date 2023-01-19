@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,15 @@ public class Ads : MonoBehaviour
 
     [SerializeField] private YandexGame _yg;
     
+    private void Start()
+    {
+        GlobalEventManager.OnPlayerFinishedLevel.AddListener(ShowFullscreenAd);
+    }
 
-
+    private void ShowFullscreenAd()
+    {
+        YandexGame.FullscreenShow();
+    }
 
     public void OpenAds()
     {

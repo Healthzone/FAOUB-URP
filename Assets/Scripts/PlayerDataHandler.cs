@@ -8,7 +8,9 @@ using YG;
 public class PlayerDataHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timeLabel;
-    [SerializeField] private Stopwatch stopwatch;
+    [SerializeField] private Stopwatch _stopwatch;
+    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private LeaderboardYG _leaderboard;
     private double _time = 0;
     // Подписываемся на событие GetDataEvent в OnEnable
     private void OnEnable() => YandexGame.GetDataEvent += GetData;
@@ -28,8 +30,20 @@ public class PlayerDataHandler : MonoBehaviour
 
     private void Save()
     {
-        YandexGame.savesData.time = stopwatch.CurrentTime;
-        YandexGame.SaveProgress();
+        if (YandexGame.SDKEnabled)
+        {
+            if(_stopwatch.CurrentTime < YandexGame.savesData.time)
+            {
+                YandexGame.savesData.time = _stopwatch.CurrentTime;
+                YandexGame.SaveProgress();
+                _leaderboard.NewScoreTimeConvert(Convert.ToSingle(_stopwatch.CurrentTime));
+
+
+            }
+            _uiManager.ShowBestTimeLabel(YandexGame.savesData.time);
+            _uiManager.ShowCurrentTimeLabel(_stopwatch.CurrentTime);
+        }
+
     }
 
     private void GetData()
