@@ -7,25 +7,24 @@ using UnityEngine;
 public class Stopwatch : MonoBehaviour
 {
     [SerializeField] private bool isActive = true;
-    [SerializeField] private float _currentTime;
+    [SerializeField] private double _currentTime = 0;
     private TMP_Text _stopwatchLabel;
 
 
     public bool IsActive { get => isActive; set => isActive = value; }
-    public float CurrentTime { get => _currentTime; private set => _currentTime = value; }
+    public double CurrentTime { get => _currentTime;}
 
     void Start()
     {
         _stopwatchLabel = gameObject.GetComponent<TMP_Text>();
-        CurrentTime = 0f;
     }
 
     void Update()
     {
         if (IsActive)
         {
-            CurrentTime += Time.deltaTime;
-            TimeSpan time = TimeSpan.FromSeconds(CurrentTime);
+            _currentTime += Time.unscaledDeltaTime;
+            TimeSpan time = TimeSpan.FromSeconds(_currentTime);
             _stopwatchLabel.text = time.ToString(@"mm\:ss\:fff");
         }
 

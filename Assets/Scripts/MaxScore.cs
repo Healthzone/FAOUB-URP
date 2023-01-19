@@ -24,7 +24,7 @@ public class MaxScore : MonoBehaviour
         Debug.Log("BestTime: " + _bestTime);
         if (stopwatch.CurrentTime > _bestTime)
         {
-            PlayerPrefs.SetFloat("PirateBayBestTime", stopwatch.CurrentTime);
+            PlayerPrefs.SetFloat("PirateBayBestTime", Convert.ToSingle(stopwatch.CurrentTime));
             uiManager.ShowBestTimeLabel(stopwatch.CurrentTime);
             return;
         }

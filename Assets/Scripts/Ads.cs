@@ -6,8 +6,6 @@ using YG;
 
 public class Ads : MonoBehaviour
 {
-    public int CurrentUsedCheckpointNumber = 0;
-    [SerializeField] private int _checkpointNumberAds = 10;
 
     [SerializeField] private AudioMixer _masteMixer;
 
@@ -30,11 +28,4 @@ public class Ads : MonoBehaviour
         _masteMixer.SetFloat("musicVolume", 0f);
     }
 
-    private void Update()
-    {
-        if(_checkpointNumberAds == CurrentUsedCheckpointNumber)
-        {
-            _yg._FullscreenShow();
-        }
-    }
 }

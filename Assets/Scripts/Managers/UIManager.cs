@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
     {
         _checkpointText.enabled = true;
         _checkpointText.transform.localScale = Vector3.zero;
-        _checkpointText.text = "Достигнута контрольная точка!";
+        _checkpointText.text = "Достигнута контрольная точка";
         DOTween.Sequence()
             .Append(_checkpointText.transform.DOScale(1, 1))
             .AppendInterval(4f)
@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void ShowBestTimeLabel(float time)
+    public void ShowBestTimeLabel(double time)
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
         _bestTimeLabel.text = $"Ваш рекорд: {timeSpan.ToString(@"mm\:ss\:fff")}";

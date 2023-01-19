@@ -12,4 +12,4 @@ EditorBuildSettings:
     path: Assets/Scenes/PirateBay.unity
     guid: 94d3d61547918a94bb08d284fc103efd
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: 8c17c02ef55f2eb48bf9d117f6fdffae, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: a73ed53a623c1914b9416f382222fde0, type: 2}
