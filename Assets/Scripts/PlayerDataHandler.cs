@@ -30,16 +30,20 @@ public class PlayerDataHandler : MonoBehaviour
 
     private void Save()
     {
+        Debug.Log("SDK enabled: " + YandexGame.SDKEnabled);
         if (YandexGame.SDKEnabled)
         {
+            Debug.Log("Best time: " + YandexGame.savesData.time);
             if(_stopwatch.CurrentTime < YandexGame.savesData.time)
             {
                 YandexGame.savesData.time = _stopwatch.CurrentTime;
                 YandexGame.SaveProgress();
                 _leaderboard.NewScoreTimeConvert(Convert.ToSingle(_stopwatch.CurrentTime));
+                _leaderboard.UpdateLB();
 
 
             }
+            _leaderboard.UpdateLB();
             _uiManager.ShowBestTimeLabel(YandexGame.savesData.time);
             _uiManager.ShowCurrentTimeLabel(_stopwatch.CurrentTime);
         }

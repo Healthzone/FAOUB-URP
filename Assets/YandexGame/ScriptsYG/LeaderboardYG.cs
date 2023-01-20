@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityToolbag;
@@ -104,9 +105,9 @@ namespace YG
 
                     if (entriesLB == "No data")
                     {
-                        sampleContainer.transform.Find("Rank").GetComponentInChildren<Text>().text = "";
-                        sampleContainer.transform.Find("Score").GetComponentInChildren<Text>().text = "";
-                        sampleContainer.transform.Find("Name").GetComponentInChildren<Text>().text = error;
+                        sampleContainer.transform.Find("Rank").GetComponentInChildren<TMP_Text>().text = "";
+                        sampleContainer.transform.Find("Score").GetComponentInChildren<TMP_Text>().text = "";
+                        sampleContainer.transform.Find("Name").GetComponentInChildren<TMP_Text>().text = error;
                     }
                     else
                     {
@@ -115,11 +116,11 @@ namespace YG
                         {
                             if (i != 0) sampleContainer = Instantiate(sampleContainer, rectTransform.parent);
 
-                            sampleContainer.transform.Find("Rank").GetComponentInChildren<Text>().text = rank[i].ToString();
-                            sampleContainer.transform.Find("Name").GetComponentInChildren<Text>().text = playersName[i];
+                            sampleContainer.transform.Find("Rank").GetComponentInChildren<TMP_Text>().text = rank[i].ToString();
+                            sampleContainer.transform.Find("Name").GetComponentInChildren<TMP_Text>().text = playersName[i];
 
                             if (!timeTypeConvert)
-                                sampleContainer.transform.Find("Score").GetComponentInChildren<Text>().text = scorePlayers[i].ToString();
+                                sampleContainer.transform.Find("Score").GetComponentInChildren<TMP_Text>().text = scorePlayers[i].ToString();
 
                             else
                             {
@@ -140,7 +141,7 @@ namespace YG
 
                                 res = minStr + ":" + secStr + milSec;
 
-                                sampleContainer.transform.Find("Score").GetComponentInChildren<Text>().text = res;
+                                sampleContainer.transform.Find("Score").GetComponentInChildren<TMP_Text>().text = res;
                             }
 
                             if (playerPhoto != PlayerPhoto.NonePhoto && photo[i] != "nonePhoto")
