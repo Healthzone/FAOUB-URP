@@ -24,6 +24,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _pauseBtn;
     [SerializeField] private GameObject _resumeBtn;
 
+    [Header("Checpoint buttons")]
+    [SerializeField] private GameObject _setCheckpointBtn;
+    [SerializeField] private GameObject _useCheckpointBtn;
+
     [Header("Canvases")]
     [SerializeField] private GameObject _controlCanvas;
     [SerializeField] private GameObject _uiCanvas;
@@ -133,11 +137,15 @@ public class UIManager : MonoBehaviour
     {
         _resumeBtn.SetActive(false);
         _pauseBtn.SetActive(true);
+        _setCheckpointBtn.SetActive(true);
+        _useCheckpointBtn.SetActive(true);
     }
     public void SetResumeGameObjectOn()
     {
         _pauseBtn.SetActive(false);
         _resumeBtn.SetActive(true);
+        _setCheckpointBtn.SetActive(false);
+        _useCheckpointBtn.SetActive(false);
     }
 
 

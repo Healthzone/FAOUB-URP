@@ -180,12 +180,14 @@ namespace YG
                     {
                         timeScaleOnAd = Time.timeScale;
                         Time.timeScale = 0;
-                        _timer.IsActive = false;
+                        if (_timer != null)
+                            _timer.IsActive = false;
                     }
                     else
                     {
                         Time.timeScale = timeScaleOnAd;
-                        _timer.IsActive = true;
+                        if (_timer != null)
+                            _timer.IsActive = true;
                     }
                 }
             }
