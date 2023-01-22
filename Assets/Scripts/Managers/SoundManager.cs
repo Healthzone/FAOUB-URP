@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _hitClip;
     [SerializeField] private AudioSource _swingClip;
 
+    public static bool IsMusicMuted = false;
+
     private void Start()
     {
         GlobalEventManager.OnPlayerHitCollider.AddListener(PlayHitSound);
@@ -28,10 +30,12 @@ public class SoundManager : MonoBehaviour
 
     public void SetMusicOn()
     {
+        IsMusicMuted = false;
         _masterMixer.SetFloat("musicVolume", 0f);
     }
     public void SetMusicOff()
     {
+        IsMusicMuted = true;
         _masterMixer.SetFloat("musicVolume", -80f);
     }
     public void SetSoundOn()

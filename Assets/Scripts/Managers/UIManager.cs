@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _soundOffBtn;
     [SerializeField] private GameObject _pauseBtn;
     [SerializeField] private GameObject _resumeBtn;
+    [SerializeField] private GameObject _homeBtn;
 
     [Header("Checpoint buttons")]
     [SerializeField] private GameObject _setCheckpointBtn;
@@ -102,7 +103,8 @@ public class UIManager : MonoBehaviour
                 .SetEase(Ease.Linear)
                 .Append(_gameBtns.transform.DOScale(1, _buttonsScaleSpeed));
 
-        } else if(_isSettingsOpened )
+        }
+        else if (_isSettingsOpened)
         {
             _isSettingsOpened = false;
             _gameBtns.transform.localScale = Vector3.one;
@@ -139,6 +141,7 @@ public class UIManager : MonoBehaviour
         _pauseBtn.SetActive(true);
         _setCheckpointBtn.SetActive(true);
         _useCheckpointBtn.SetActive(true);
+        _homeBtn.SetActive(true);
     }
     public void SetResumeGameObjectOn()
     {
@@ -146,6 +149,7 @@ public class UIManager : MonoBehaviour
         _resumeBtn.SetActive(true);
         _setCheckpointBtn.SetActive(false);
         _useCheckpointBtn.SetActive(false);
+        _homeBtn.SetActive(false);
     }
 
 
