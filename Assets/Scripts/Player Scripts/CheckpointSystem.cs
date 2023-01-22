@@ -28,6 +28,7 @@ public class CheckpointSystem : MonoBehaviour
         {
             playerGameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0); 
             playerGameObject.transform.position = savedPosition;
+            Tip.NumberOfTries++;
 
         } else
         {

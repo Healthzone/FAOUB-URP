@@ -7,7 +7,7 @@ using UnityEngine;
 public class GraphicSettings : MonoBehaviour
 {
     [SerializeField] private GameObject _mainCamera;
-    public static bool IsReflectionOn = false;
+    public static bool IsReflectionOn = true;
 
     public void SetReflection()
     {

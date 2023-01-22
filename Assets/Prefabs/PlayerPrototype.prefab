@@ -267,8 +267,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_UpdateMethod: 0
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -292,15 +292,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4857203670224091427}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9252d638ad36b6b4492bd3b6fb282670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderScale: 1
+  renderScale: 0.094
   reflectionLayer:
     serializedVersion: 2
-    m_Bits: 4294967279
+    m_Bits: 455
   reflectSkybox: 1
   reflectionTarget: {fileID: 0}
   reflectionPlaneOffset: 1

@@ -8,21 +8,39 @@ using UnityEngine.UI;
 
 public class Tip : MonoBehaviour
 {
+    public static int NumberOfTries = 0;
+    [SerializeField] private int _triesToTip = 10;
     [SerializeField] private float _tipDelay;
     [SerializeField] private Image _setCheckpointImage;
+
     private RectTransform rectTransform;
 
-    void Start()
+    private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        StartCoroutine(ShowTip());
+        StartCoroutine(InitTipDelay());
+    }
+
+    private void Update()
+    {
+        if (NumberOfTries == _triesToTip)
+        {
+            StartCoroutine(ShowTip());
+            NumberOfTries = 0;
+        }
     }
 
 
-    IEnumerator ShowTip()
+
+    IEnumerator InitTipDelay()
     {
         yield return new WaitForSeconds(_tipDelay);
+        StartCoroutine(ShowTip());
+        
+    }
 
+    IEnumerator ShowTip()
+    {
         gameObject.SetActive(true);
 
         DOTween.Sequence()
@@ -48,5 +66,7 @@ public class Tip : MonoBehaviour
             .Append(rectTransform.DOAnchorPos(Vector2.zero, 1f))
             .AppendInterval(7f)
             .Append(rectTransform.DOAnchorPos(new Vector2(0, 500), 1f));
+
+        yield return null;
     }
 }

@@ -35,7 +35,7 @@ namespace StylizedWater
         void OnEnable()
         {
             RenderPipelineManager.beginCameraRendering += DoPlanarReflections;
-            reflectionLayer = ~(1 << 4);
+            reflectionLayer = ~(1 << 4 | 1 << 5);
         }
 
         void OnDisable()

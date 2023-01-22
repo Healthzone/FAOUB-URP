@@ -7,10 +7,23 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject _reflectionToogleGO;
+    [SerializeField] private GameObject _LeaderBoardGO;
+    [SerializeField] private GameObject _MenuGO;
     private Toggle.ToggleEvent emptyToggleEvent = new Toggle.ToggleEvent();
     public void StartGame()
     {
-        SceneManager.LoadScene("PirateBay");
+        SceneTransition.SwitchToScene("PirateBay");
+    }
+
+    public void OpenLeaderBoard()
+    {
+        _LeaderBoardGO.SetActive(true);
+        _MenuGO.SetActive(false);
+    }
+    public void CloseLeaderBoard()
+    {
+        _LeaderBoardGO.SetActive(false);
+        _MenuGO.SetActive(true);
     }
     private void Awake()
     {

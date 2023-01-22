@@ -34,12 +34,11 @@ public class PlayerDataHandler : MonoBehaviour
         if (YandexGame.SDKEnabled)
         {
             Debug.Log("Best time: " + YandexGame.savesData.time);
-            if(_stopwatch.CurrentTime < YandexGame.savesData.time)
+            if (_stopwatch.CurrentTime < YandexGame.savesData.time || YandexGame.savesData.time == 0)
             {
                 YandexGame.savesData.time = _stopwatch.CurrentTime;
                 YandexGame.SaveProgress();
                 _leaderboard.NewScoreTimeConvert(Convert.ToSingle(_stopwatch.CurrentTime));
-                _leaderboard.UpdateLB();
 
 
             }
@@ -48,6 +47,13 @@ public class PlayerDataHandler : MonoBehaviour
             _uiManager.ShowCurrentTimeLabel(_stopwatch.CurrentTime);
         }
 
+    }
+
+    public void ResetSaveData()
+    {
+        YandexGame.savesData.time = 0;
+        YandexGame.SaveProgress();
+        Debug.Log("Saved data reset successfully");
     }
 
     private void GetData()

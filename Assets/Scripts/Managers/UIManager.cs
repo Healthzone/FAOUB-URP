@@ -71,12 +71,12 @@ public class UIManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene("PirateBay");
+        SceneTransition.SwitchToScene("PirateBay");
     }
     public void ToMainMenu()
     {
         DOTween.KillAll();
-        SceneManager.LoadScene("Menu");
+        SceneTransition.SwitchToScene("Menu");
     }
 
     public void ShowBestTimeLabel(double time)
