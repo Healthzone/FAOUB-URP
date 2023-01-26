@@ -17,7 +17,8 @@ public class Music : MonoBehaviour
 
     void Update()
     {
-        if (!_audioSource.isPlaying)
+        //Debug.Log(_audioSource.time);
+        if (!_audioSource.isPlaying && _audioSource.time == 0)
         {
             _audioSource.clip = GetNextClip();
             _audioSource.Play();

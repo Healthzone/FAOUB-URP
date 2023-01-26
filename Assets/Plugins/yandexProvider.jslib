@@ -1,5 +1,13 @@
 mergeInto(LibraryManager.library,
 {
+	registerVisibilityChangeEvent: function () 
+	{
+		document.addEventListener("visibilitychange", function () {
+		  SendMessage("GameManager", "OnVisibilityChange", document.visibilityState);
+		});
+		if (document.visibilityState != "visible")
+		  SendMessage("GameManager", "OnVisibilityChange", document.visibilityState);
+	},
 	AuthorizationCheck: function (playerPhotoSize, scopes)
 	{
 		AuthorizationCheck(UTF8ToString(playerPhotoSize), scopes);

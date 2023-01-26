@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static YG.InfoYG;
 
 public class SoundManager : MonoBehaviour
 {
@@ -17,6 +18,19 @@ public class SoundManager : MonoBehaviour
         GlobalEventManager.OnPlayerHitCollider.AddListener(PlayHitSound);
         GlobalEventManager.OnPlayerSwingBall.AddListener(PlaySwingSound);
     }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!IsMusicMuted)
+            MuteAllMixer(!focus);
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (!IsMusicMuted)
+            MuteAllMixer(pause);
+    }
+
 
     private void PlaySwingSound()
     {
@@ -47,5 +61,19 @@ public class SoundManager : MonoBehaviour
         _masterMixer.SetFloat("soundVolume", -80f);
     }
 
+    public void MuteAllMixer(bool silence)
+    {
+        if (silence)
+        {
+            _masterMixer.SetFloat("soundVolume", -80f);
+            _masterMixer.SetFloat("musicVolume", -80f);
+        }
+        else
+        {
+            _masterMixer.SetFloat("soundVolume", 0f);
+            _masterMixer.SetFloat("musicVolume", 0f);
+        }
+
+    }
 
 }
