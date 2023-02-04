@@ -47,8 +47,8 @@ public class UIManager : MonoBehaviour
         _controlCanvas.SetActive(false);
         _uiCanvas.SetActive(false);
         _finishedModalDialoge.SetActive(true);
-        _finishedModalDialoge.transform.localScale = Vector3.zero;
-        _finishedModalDialoge.transform.DOScale(1, 1.5f);
+        //_finishedModalDialoge.transform.localScale = Vector3.zero;
+        //_finishedModalDialoge.transform.DOScale(1, 1.5f);
 
     }
 

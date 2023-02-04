@@ -9,7 +9,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _reflectionToogleGO;
     [SerializeField] private GameObject _LeaderBoardGO;
     [SerializeField] private GameObject _MenuGO;
-    private Toggle.ToggleEvent emptyToggleEvent = new Toggle.ToggleEvent();
     public void StartGame()
     {
         SceneTransition.SwitchToScene("PirateBay");
@@ -24,13 +23,5 @@ public class MenuManager : MonoBehaviour
     {
         _LeaderBoardGO.SetActive(false);
         _MenuGO.SetActive(true);
-    }
-    private void Awake()
-    {
-        Toggle reflectionToggle = _reflectionToogleGO.GetComponent<Toggle>();
-        var originalEvent = reflectionToggle.onValueChanged;
-        reflectionToggle.onValueChanged = emptyToggleEvent;
-        reflectionToggle.isOn = GraphicSettings.IsReflectionOn;
-        reflectionToggle.onValueChanged = originalEvent;
     }
 }
